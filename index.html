@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chathura Ishtaweera — Game Developer in Training</title>
+<meta name="description" content="Portfolio of Chathura Ishtaweera — aspiring game developer, level designer, and multimedia undergraduate based in Sri Lanka." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #0B0B0E;
+  --bg-2:      #111116;
+  --surface:   #15151B;
+  --surface-2: #1B1B22;
+  --line:      #26262E;
+  --line-2:    #34343E;
+  --ink:       #F5F2E9;
+  --ink-mute:  #B5B0A4;
+  --ink-low:   #6E6A60;
+  --accent:    #C7FF3E;
+  --accent-2:  #FF5A4D;
+  --accent-3:  #88D5FF;
+
+  --display:  'Bricolage Grotesque', system-ui, sans-serif;
+  --serif:    'Instrument Serif', Georgia, serif;
+  --body:     'DM Sans', system-ui, sans-serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(1200px 800px at 80% -10%, rgba(199, 255, 62, 0.04), transparent 60%),
+    radial-gradient(900px 600px at -10% 60%, rgba(255, 90, 77, 0.035), transparent 60%);
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 22px 92px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(11, 11, 14, 0.7);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease;
+}
+.nav.scrolled { border-bottom-color: var(--line); }
+
+.brand {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.nav-links {
+  display: flex; gap: 32px;
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+  counter-reset: navi;
+}
+.nav-links a {
+  color: var(--ink-mute);
+  position: relative;
+  padding: 4px 0;
+  transition: color .2s;
+  counter-increment: navi;
+}
+.nav-links a::before {
+  content: counter(navi, decimal-leading-zero) " ";
+  color: var(--ink-low);
+  margin-right: 6px;
+  font-size: 10px;
+}
+.nav-links a:hover { color: var(--ink); }
+
+@media (max-width: 800px) {
+  .nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 160px 92px 80px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+}
+@media (max-width: 800px) { .hero { padding: 130px 28px 60px; } }
+
+.hero-meta {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-low);
+  margin-bottom: 80px;
+}
+.hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-meta .live::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.hero-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(56px, 12vw, 180px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.hero-name .ish {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hero-name .arrow {
+  display: inline-block;
+  color: var(--accent);
+  margin-left: 0.15em;
+  transform: translateY(-0.1em);
+}
+
+.hero-tagline {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: 80px;
+  align-items: end;
+}
+@media (max-width: 900px) { .hero-tagline { grid-template-columns: 1fr; gap: 32px; } }
+
+.hero-tagline .role {
+  font-family: var(--mono);
+  font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mute);
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-tagline .role .bar { width: 48px; height: 1px; background: var(--accent); }
+
+.hero-tagline .pitch {
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.7vw, 24px);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  letter-spacing: -0.01em;
+}
+
+.marquee {
+  margin-top: 100px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+  overflow: hidden;
+  position: relative;
+  margin-left: -92px; margin-right: -92px;
+}
+@media (max-width: 800px) { .marquee { margin-left: -28px; margin-right: -28px; } }
+
+.marquee-track {
+  display: inline-flex;
+  gap: 56px;
+  animation: scroll 50s linear infinite;
+  white-space: nowrap;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.marquee-track span { color: var(--ink); }
+.marquee-track i {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.marquee-track .star {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-weight: 400;
+}
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 140px 92px;
+  position: relative;
+}
+@media (max-width: 800px) { .section { padding: 100px 28px; } }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 40px;
+  margin-bottom: 80px;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+  align-items: start;
+}
+@media (max-width: 800px) { .section-head { grid-template-columns: 1fr; gap: 16px; } }
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.1em;
+  color: var(--ink-low);
+  padding-top: 6px;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-top: 6px;
+}
+.section-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.section-title em {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  color: var(--accent);
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+}
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+.about-prose {
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 600px;
+}
+.about-prose p { margin-bottom: 24px; }
+.about-prose em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.05em;
+}
+.about-prose .key {
+  color: var(--accent-3);
+  border-bottom: 1px dashed var(--accent-3);
+  padding-bottom: 1px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  align-self: start;
+}
+.stat {
+  background: var(--bg);
+  padding: 24px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+  min-height: 130px;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-low);
+}
+.stat-value {
+  font-family: var(--display);
+  font-size: 30px; font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.stat-value em {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  color: var(--accent);
+}
+
+/* WORK */
+.work-list { display: flex; flex-direction: column; gap: 0; }
+
+.project {
+  border-top: 1px solid var(--line);
+  padding: 80px 0;
+  display: flex; flex-direction: column; gap: 40px;
+}
+.project:last-child { border-bottom: 1px solid var(--line); }
+
+.project-head {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 900px) { .project-head { grid-template-columns: 1fr; gap: 16px; } }
+
+.project-num {
+  font-family: var(--mono);
+  font-size: 13px; letter-spacing: 0.1em;
+  color: var(--ink-low);
+  padding-top: 12px;
+}
+
+.project-titleblock { display: flex; flex-direction: column; gap: 18px; }
+
+.project-title {
+  font-family: var(--display);
+  font-size: clamp(34px, 4.5vw, 60px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+}
+.project-title em {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  color: var(--accent);
+}
+
+.project-pips {
+  display: flex; flex-wrap: wrap;
+  gap: 8px 14px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-low);
+  align-items: center;
+}
+.project-pips .pip {
+  border: 1px solid var(--line-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--ink-mute);
+}
+.project-pips .pip.role {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(199, 255, 62, 0.06);
+}
+
+/* Media — 16:9 box; iframes fill the box */
+.project-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.project-media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--bg-2);
+  display: block;
+}
+
+.visit-overlay {
+  position: absolute;
+  bottom: 18px; right: 18px;
+  z-index: 5;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 10px 18px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, color .2s, transform .2s;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.visit-overlay:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+.project-foot {
+  display: grid;
+  grid-template-columns: 80px 1.4fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 900px) { .project-foot { grid-template-columns: 1fr; gap: 18px; } }
+
+.project-blurb {
+  grid-column: 2;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-mute);
+  max-width: 600px;
+}
+@media (max-width: 900px) { .project-blurb { grid-column: 1; } }
+
+.project-link {
+  grid-column: 3;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4px;
+  align-self: start; justify-self: start;
+  transition: color .2s, border-color .2s, transform .2s;
+}
+@media (max-width: 900px) { .project-link { grid-column: 1; } }
+.project-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+.project-link .arr { font-family: var(--display); transform: translateY(-1px); }
+
+/* TOOLKIT */
+.toolkit {
+  display: grid;
+  grid-template-columns: 80px repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+@media (max-width: 900px) {
+  .toolkit { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .toolkit > .toolkit-spacer { display: none; }
+}
+@media (max-width: 600px) {
+  .toolkit { grid-template-columns: 1fr; }
+}
+
+.tool-group h3 {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 20px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.tool-group h3 .num {
+  color: var(--ink-low);
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.tool-group ul {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.tool-group li {
+  font-family: var(--display);
+  font-size: 22px; font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  display: flex; align-items: baseline; gap: 12px;
+}
+.tool-group li::before {
+  content: "→";
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 400;
+}
+.tool-group li small {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-low);
+  margin-left: auto;
+  font-weight: 400;
+}
+
+/* TIMELINE */
+.timeline {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 40px;
+}
+@media (max-width: 900px) { .timeline { grid-template-columns: 1fr; } }
+
+.timeline-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0;
+  border-top: 1px solid var(--line);
+}
+.timeline-list li {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 28px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding .3s, background .3s;
+}
+.timeline-list li:hover {
+  padding-left: 16px;
+  background: linear-gradient(90deg, rgba(199, 255, 62, 0.04), transparent);
+}
+@media (max-width: 700px) {
+  .timeline-list li { grid-template-columns: 1fr; gap: 4px; }
+}
+
+.tl-year {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.08em;
+  color: var(--ink-low);
+}
+.tl-title {
+  font-family: var(--display);
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.tl-title em {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  color: var(--accent);
+}
+.tl-place {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--ink-mute);
+}
+
+/* CONTACT */
+.contact-block { text-align: center; padding: 60px 0; }
+.contact-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+.contact-eyebrow::before, .contact-eyebrow::after {
+  content: "—";
+  margin: 0 12px;
+  color: var(--accent);
+}
+
+.contact-headline {
+  font-family: var(--display);
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+}
+.contact-headline em {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 400;
+  color: var(--accent);
+}
+
+.contact-email {
+  font-family: var(--display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 6px;
+  display: inline-block;
+  letter-spacing: -0.02em;
+  transition: color .2s, border-color .2s;
+}
+.contact-email:hover { color: var(--accent); border-color: var(--accent); }
+
+.contact-row {
+  margin-top: 40px;
+  display: flex; justify-content: center; gap: 40px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.contact-row a {
+  color: var(--ink-mute);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.contact-row a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+.contact-row a::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 9px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 32px 92px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-low);
+  flex-wrap: wrap; gap: 16px;
+}
+@media (max-width: 800px) { footer { padding: 28px; } }
+
+footer .signoff em {
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  color: var(--ink-mute);
+  letter-spacing: 0;
+  font-size: 13px;
+}
+
+body.js .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+body.js .reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  body.js .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">
+    <span class="brand-dot"></span>
+    Chathura Ishtaweera <span style="color: var(--ink-low);">— Game Dev</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-meta">
+    <span><span class="live"></span>Currently building games · Sri Lanka</span>
+    <span>Portfolio · 2026 · v1.0</span>
+  </div>
+
+  <div>
+    <h1 class="hero-name reveal">
+      Chathura<br>
+      <span class="ish">Ishtaweera</span><span class="arrow">↗</span>
+    </h1>
+
+    <div class="hero-tagline reveal" style="transition-delay: .15s;">
+      <div class="role">
+        <span class="bar"></span>
+        Game developer in training · Level designer · Multimedia, NSBM
+      </div>
+      <p class="pitch">
+        Building playable worlds, one level at a time. On a long road from
+        student to studio founder — and learning out loud the whole way.
+      </p>
+    </div>
+  </div>
+
+  <div class="marquee reveal" style="transition-delay: .3s;">
+    <div class="marquee-track">
+      <span>Level Design</span><span class="star">✦</span>
+      <span>C++</span><span class="star">✦</span>
+      <span><i>Java</i></span><span class="star">✦</span>
+      <span>3D Modelling</span><span class="star">✦</span>
+      <span>UI / UX</span><span class="star">✦</span>
+      <span><i>Worldbuilding</i></span><span class="star">✦</span>
+      <span>HTML / CSS / JS</span><span class="star">✦</span>
+      <span>Game Systems</span><span class="star">✦</span>
+      <span>Level Design</span><span class="star">✦</span>
+      <span>C++</span><span class="star">✦</span>
+      <span><i>Java</i></span><span class="star">✦</span>
+      <span>3D Modelling</span><span class="star">✦</span>
+      <span>UI / UX</span><span class="star">✦</span>
+      <span><i>Worldbuilding</i></span><span class="star">✦</span>
+      <span>HTML / CSS / JS</span><span class="star">✦</span>
+      <span>Game Systems</span><span class="star">✦</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <header class="section-head reveal">
+    <div class="section-num">01</div>
+    <div class="section-label">About / Manifesto</div>
+    <h2 class="section-title">Player first.<br>Then everything <em>else.</em></h2>
+  </header>
+
+  <div class="about-grid reveal">
+    <div></div>
+    <div class="about-prose">
+      <p>
+        I'm a multimedia undergraduate at <span class="key">NSBM</span>, but I learned
+        most of what I know about games by playing them — obsessively, critically,
+        and with a notepad open. <em>The Division 2.</em> <em>Cyberpunk 2077.</em>
+        <em>Honkai: Star Rail.</em> Hours sunk into systems, level flow, encounter
+        design, UI craft.
+      </p>
+      <p>
+        On the build side I work across the full pipeline:
+        <span class="key">level design</span> for a team game project,
+        <span class="key">3D character modelling</span> in VRoid Studio,
+        full <span class="key">web platforms</span> in HTML / CSS / JavaScript, and
+        <span class="key">UI / visual design</span> in Photoshop and Illustrator.
+        The thread tying it all together is the same question — what makes this
+        <em>feel</em> good to play?
+      </p>
+      <p>
+        The long arc: ship games people love, then build the studio that makes more
+        of them. The short arc: keep learning, keep shipping, keep getting better.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-label">Based in</span>
+        <span class="stat-value">Sri <em>Lanka</em></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Reading list</span>
+        <span class="stat-value"><em>Type-Moon,</em><br>Fate</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Current focus</span>
+        <span class="stat-value">Level <em>design</em></span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">North star</span>
+        <span class="stat-value">Own <em>studio</em></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <header class="section-head reveal">
+    <div class="section-num">02</div>
+    <div class="section-label">Selected Work · 2024–2026</div>
+    <h2 class="section-title">Things I've <em>built.</em></h2>
+  </header>
+
+  <div class="work-list">
+
+    <article class="project reveal">
+      <header class="project-head">
+        <span class="project-num">P/01</span>
+        <div class="project-titleblock">
+          <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
+          <div class="project-pips">
+            <span class="pip role">Level Designer</span>
+            <span class="pip">University coursework</span>
+            <span class="pip">NSBM</span>
+            <span class="pip">2025</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="project-media">
+        <iframe
+          src="https://drive.google.com/file/d/100dp9fPpFp_fgxR-mt1Wp5YAoGEsziIE/preview"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="Level design gameplay"></iframe>
+      </div>
+
+      <div class="project-foot">
+        <p class="project-blurb">
+          Designed and built playable levels for a team-developed game produced as
+          a university group project. Owned the level layout, mission flow,
+          encounter pacing, and environmental composition — collaborating with
+          programmers and artists to translate paper design into a working
+          in-engine build.
+        </p>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <header class="project-head">
+        <span class="project-num">P/02</span>
+        <div class="project-titleblock">
+          <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
+          <div class="project-pips">
+            <span class="pip role">Solo · Designer + Dev</span>
+            <span class="pip">HTML5 / CSS3 / JS</span>
+            <span class="pip">Live</span>
+            <span class="pip">2025</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="project-media">
+        <iframe
+          src="https://zerosnake00.github.io/GameplayMate/"
+          loading="lazy"
+          title="GamePlayMate live site"></iframe>
+        <a class="visit-overlay"
+           href="https://zerosnake00.github.io/GameplayMate/"
+           target="_blank" rel="noopener">
+          Visit live <span style="font-family: var(--display);">↗</span>
+        </a>
+      </div>
+
+      <div class="project-foot">
+        <p class="project-blurb">
+          End-to-end web platform offering specialised services for gacha-game
+          players (Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless
+          Zone Zero). Born out of frustration with arbitrary platform restrictions
+          on Fiverr — built from the ground up: visual system, hero composition,
+          responsive card grid, custom video players, expandable lists.
+        </p>
+        <a class="project-link"
+           href="https://github.com/ZeroSnake00/GameplayMate"
+           target="_blank" rel="noopener">
+          View source <span class="arr">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <header class="project-head">
+        <span class="project-num">P/03</span>
+        <div class="project-titleblock">
+          <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
+          <div class="project-pips">
+            <span class="pip role">3D Artist</span>
+            <span class="pip">VRoid Studio</span>
+            <span class="pip">Multimedia coursework</span>
+            <span class="pip">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="project-media">
+        <iframe
+          src="https://drive.google.com/file/d/1vS93WC3knlrKnG1-b-5gkbKR3NB7xSWI/preview"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="3D character creation in VRoid Studio"></iframe>
+      </div>
+
+      <div class="project-foot">
+        <p class="project-blurb">
+          Designed and modelled an original 3D character in VRoid Studio —
+          silhouette, proportions, facial parameters, outfit composition, and
+          texturing. End-to-end character pipeline thinking, built with the
+          long-term ambition of slotting models like this straight into a game
+          engine.
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section" id="toolkit">
+  <header class="section-head reveal">
+    <div class="section-num">03</div>
+    <div class="section-label">Toolkit / Stack</div>
+    <h2 class="section-title">What I <em>use.</em></h2>
+  </header>
+
+  <div class="toolkit reveal">
+    <div class="toolkit-spacer"></div>
+
+    <div class="tool-group">
+      <h3><span class="num">a/</span>Game &amp; Design</h3>
+      <ul>
+        <li>Level Design</li>
+        <li>Game Systems</li>
+        <li>VRoid Studio</li>
+        <li>UI / UX Design</li>
+      </ul>
+    </div>
+
+    <div class="tool-group">
+      <h3><span class="num">b/</span>Code</h3>
+      <ul>
+        <li>C++</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>HTML5 &amp; CSS3</li>
+        <li>Git / GitHub</li>
+      </ul>
+    </div>
+
+    <div class="toolkit-spacer"></div>
+
+    <div class="tool-group">
+      <h3><span class="num">c/</span>Visual</h3>
+      <ul>
+        <li>Adobe Photoshop</li>
+        <li>Adobe Illustrator</li>
+        <li>Typography</li>
+      </ul>
+    </div>
+
+    <div class="tool-group">
+      <h3><span class="num">d/</span>Currently Learning</h3>
+      <ul>
+        <li>Game engines <small>Unity / Unreal</small></li>
+        <li>C# scripting</li>
+        <li>Shader basics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <header class="section-head reveal">
+    <div class="section-num">04</div>
+    <div class="section-label">Education / Path</div>
+    <h2 class="section-title">The <em>route</em> here.</h2>
+  </header>
+
+  <div class="timeline reveal">
+    <div></div>
+    <ol class="timeline-list">
+      <li>
+        <span class="tl-year">2023 → Now</span>
+        <span class="tl-title">BSc <em>(Hons)</em> in Multimedia</span>
+        <span class="tl-place">National School of Business Management</span>
+      </li>
+      <li>
+        <span class="tl-year">2018</span>
+        <span class="tl-title">GCE Advanced Level</span>
+        <span class="tl-place">Ananda College, Colombo</span>
+      </li>
+      <li>
+        <span class="tl-year">2016</span>
+        <span class="tl-title">Diploma in IT <em>w/</em> E-commerce</span>
+        <span class="tl-place">Esoft Metro Campus</span>
+      </li>
+      <li>
+        <span class="tl-year">2016</span>
+        <span class="tl-title">Diploma in English</span>
+        <span class="tl-place">Esoft Metro Campus</span>
+      </li>
+      <li>
+        <span class="tl-year">2015</span>
+        <span class="tl-title">GCE Ordinary Level</span>
+        <span class="tl-place">Nalanda College, Colombo</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contact-block reveal">
+    <div class="contact-eyebrow">Get in touch</div>
+    <h2 class="contact-headline">Let's build<br>something <em>worth</em><br>playing.</h2>
+
+    <a class="contact-email" href="mailto:chathuraishtaweera@gmail.com">
+      chathuraishtaweera@gmail.com
+    </a>
+
+    <div class="contact-row">
+      <a href="https://github.com/ZeroSnake00" target="_blank" rel="noopener">GitHub / ZeroSnake00</a>
+      <a href="tel:+94778878936">+94 77 887 8936</a>
+      <a href="https://zerosnake00.github.io/GameplayMate/" target="_blank" rel="noopener">GamePlayMate /↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Chathura Ishtaweera</span>
+  <span class="signoff">Designed &amp; built by <em>me,</em> from Delgoda.</span>
+  <span>Open to game-dev opportunities</span>
+</footer>
+
+<script>
+  document.body.classList.add('js');
+
+  (function () {
+    const targets = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(el => io.observe(el));
+
+    setTimeout(() => {
+      targets.forEach(el => el.classList.add('in'));
+    }, 4000);
+  })();
+
+  (function () {
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      if (window.scrollY > 20) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
