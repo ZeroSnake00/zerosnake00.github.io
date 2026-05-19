@@ -397,6 +397,43 @@ a { color: inherit; text-decoration: none; }
   display: block;
 }
 
+/* Image fills the 16:9 box (wide composites, concept art) */
+.project-media img.media-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Portrait media (magazine cover, posters) — show the whole piece, centered,
+   no cropping. Box auto-heights instead of forcing 16:9. */
+.project-media.media-portrait {
+  aspect-ratio: auto;
+  background:
+    radial-gradient(800px 500px at 50% 0%, rgba(199, 255, 62, 0.05), transparent 70%),
+    var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 24px;
+}
+.project-media.media-portrait img {
+  max-height: 78vh;
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--line-2);
+}
+@media (max-width: 600px) {
+  .project-media.media-portrait { padding: 32px 16px; }
+  .project-media.media-portrait img { max-width: 100%; }
+}
+
 .visit-overlay {
   position: absolute;
   bottom: 18px; right: 18px;
@@ -893,6 +930,73 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
           texturing. End-to-end character pipeline thinking, built with the
           long-term ambition of slotting models like this straight into a game
           engine.
+        </p>
+      </div>
+    </article>
+
+    <!-- =============== P/04 — PHOTOSHOP COMPOSITE =============== -->
+    <article class="project reveal">
+      <header class="project-head">
+        <span class="project-num">P/04</span>
+        <div class="project-titleblock">
+          <h3 class="project-title">Fantasy scene<br><em>— photo composite.</em></h3>
+          <div class="project-pips">
+            <span class="pip role">Digital Artist</span>
+            <span class="pip">Adobe Photoshop</span>
+            <span class="pip">Concept / Environment</span>
+            <span class="pip">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="project-media">
+        <img class="media-fill"
+             src="images/photoshop-dragon.jpg"
+             alt="Fantasy photo manipulation — a dragon impaled by glowing magic swords flying over a lava-fed canyon under a blood moon, with two figures on a cliff for scale"
+             loading="lazy" />
+      </div>
+
+      <div class="project-foot">
+        <p class="project-blurb">
+          A composited fantasy environment built in Photoshop — dragon, glowing
+          enchanted blades, blood moon, lava river, and a cliff with figures for
+          scale. The work is in the integration: matching light direction, colour
+          grading every element to one palette, and layering atmospheric haze so
+          separate stock pieces read as a single believable world. Exactly the
+          mood-and-scene thinking that feeds game environment art.
+        </p>
+      </div>
+    </article>
+
+    <!-- =============== P/05 — ILLUSTRATOR MAGAZINE COVER =============== -->
+    <article class="project reveal">
+      <header class="project-head">
+        <span class="project-num">P/05</span>
+        <div class="project-titleblock">
+          <h3 class="project-title">STRUCTURES<br><em>— magazine cover.</em></h3>
+          <div class="project-pips">
+            <span class="pip role">Vector / Layout Designer</span>
+            <span class="pip">Adobe Illustrator</span>
+            <span class="pip">Print Design</span>
+            <span class="pip">2024</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="project-media media-portrait">
+        <img
+          src="images/illustrator-magazine.jpg"
+          alt="STRUCTURES architecture magazine cover — vector illustration of the Colombo skyline and Lotus Tower in purple silhouette against an orange and yellow sunburst, with a bold masthead"
+          loading="lazy" />
+      </div>
+
+      <div class="project-foot">
+        <p class="project-blurb">
+          A print magazine cover built entirely in Illustrator — vector skyline
+          illustration, sunburst composition, and a strong typographic system
+          with a full-bleed masthead. Set up properly for print with CMYK colour,
+          crop marks, and registration, balancing a loud hero illustration against
+          clean editorial hierarchy.
         </p>
       </div>
     </article>
