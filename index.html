@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chathura Ishtaweera — Game Developer in Training</title>
-<meta name="description" content="Portfolio of Chathura Ishtaweera — aspiring game developer, level designer, and multimedia undergraduate based in Sri Lanka." />
+<title>Chathura Ishtaweera — Game Developer & Multimedia Artist</title>
+<meta name="description" content="Portfolio of Chathura Ishtaweera — game developer, level designer, and multimedia undergraduate based in Sri Lanka." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,7 @@
   --ink-mute:  #B5B0A4;
   --ink-low:   #6E6A60;
   --accent:    #C7FF3E;
+  --accent-glow: rgba(199, 255, 62, 0.15);
   --accent-2:  #FF5A4D;
   --accent-3:  #88D5FF;
 
@@ -29,13 +30,21 @@
   --serif:    'Instrument Serif', Georgia, serif;
   --body:     'DM Sans', system-ui, sans-serif;
   --mono:     'JetBrains Mono', 'Courier New', monospace;
+  
+  --max-width: 1200px;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 10px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--ink);
   font-family: var(--body);
   font-size: 16px;
@@ -44,25 +53,46 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  background-image:
-    radial-gradient(1200px 800px at 80% -10%, rgba(199, 255, 62, 0.04), transparent 60%),
-    radial-gradient(900px 600px at -10% 60%, rgba(255, 90, 77, 0.035), transparent 60%);
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(1200px 800px at 80% -10%, rgba(199, 255, 62, 0.05), transparent 60%),
+    radial-gradient(900px 600px at -10% 60%, rgba(255, 90, 77, 0.04), transparent 60%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
 }
 
 ::selection { background: var(--accent); color: var(--bg); }
 a { color: inherit; text-decoration: none; }
 
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* NAV */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  padding: 22px 92px;
-  display: flex; justify-content: space-between; align-items: center;
-  background: rgba(11, 11, 14, 0.7);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding: 20px 0;
+  display: flex; justify-content: center;
+  background: rgba(11, 11, 14, 0.6);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid transparent;
-  transition: border-color .3s ease;
+  transition: border-color .3s ease, padding .3s ease;
 }
-.nav.scrolled { border-bottom-color: var(--line); }
+.nav.scrolled { 
+  border-bottom-color: rgba(255, 255, 255, 0.05); 
+  padding: 14px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.nav-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 40px;
+}
 
 .brand {
   font-family: var(--mono);
@@ -74,11 +104,12 @@ a { color: inherit; text-decoration: none; }
   width: 8px; height: 8px;
   background: var(--accent);
   border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-glow);
   animation: pulse 2s ease-in-out infinite;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+  50% { opacity: 0.5; transform: scale(0.85); box-shadow: 0 0 2px var(--accent-glow); }
 }
 
 .nav-links {
@@ -96,25 +127,28 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a::before {
   content: counter(navi, decimal-leading-zero) " ";
-  color: var(--ink-low);
+  color: var(--accent);
+  opacity: 0.5;
   margin-right: 6px;
   font-size: 10px;
+  transition: opacity .2s;
 }
 .nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::before { opacity: 1; }
 
 @media (max-width: 800px) {
-  .nav { padding: 18px 24px; }
+  .nav-inner { padding: 0 24px; }
   .nav-links { display: none; }
 }
 
 /* HERO */
 .hero {
   min-height: 100vh;
-  padding: 160px 92px 80px;
-  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 160px 40px 80px;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative;
 }
-@media (max-width: 800px) { .hero { padding: 130px 28px 60px; } }
+@media (max-width: 800px) { .hero { padding: 130px 24px 60px; } }
 
 .hero-meta {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
@@ -136,7 +170,7 @@ a { color: inherit; text-decoration: none; }
 .hero-name {
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(56px, 12vw, 180px);
+  font-size: clamp(56px, 10vw, 160px);
   line-height: 0.88;
   letter-spacing: -0.04em;
   color: var(--ink);
@@ -145,6 +179,8 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--serif);
   font-style: italic; font-weight: 400;
   letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(255,255,255,0.1);
 }
 .hero-name .arrow {
   display: inline-block;
@@ -156,7 +192,7 @@ a { color: inherit; text-decoration: none; }
 .hero-tagline {
   margin-top: 36px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
   gap: 80px;
   align-items: end;
 }
@@ -168,7 +204,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-mute);
   display: flex; align-items: center; gap: 14px;
 }
-.hero-tagline .role .bar { width: 48px; height: 1px; background: var(--accent); }
+.hero-tagline .role .bar { width: 48px; height: 1px; background: var(--accent); box-shadow: 0 0 5px var(--accent); }
 
 .hero-tagline .pitch {
   font-family: var(--serif);
@@ -179,28 +215,101 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.01em;
 }
 
+/* HERO: copy column + floating thumbnail stack */
+.hero-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+@media (max-width: 900px) { .hero-body { flex-direction: column; align-items: flex-start; gap: 48px; } }
+
+.hero-copy { flex: 1 1 auto; min-width: 0; }
+
+.hero-scroll {
+  margin-top: 56px;
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-mute);
+  transition: color .2s, gap .2s;
+}
+.hero-scroll:hover { color: var(--ink); gap: 18px; }
+.hero-scroll-line {
+  width: 32px; height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
+  position: relative;
+}
+.hero-scroll-line::after {
+  content: "";
+  position: absolute;
+  right: -2px; top: 50%;
+  width: 6px; height: 6px;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  transform: translateY(-50%) rotate(45deg);
+  animation: hero-scroll-nudge 1.6s ease-in-out infinite;
+}
+@keyframes hero-scroll-nudge {
+  0%, 100% { transform: translateY(-50%) rotate(45deg) translateX(0); }
+  50% { transform: translateY(-50%) rotate(45deg) translateX(4px); }
+}
+
+.hero-stack {
+  position: relative;
+  flex: 0 0 auto;
+  width: 260px;
+  height: 320px;
+  pointer-events: none;
+}
+.hero-thumb {
+  --rot: 0deg;
+  position: absolute;
+  width: 190px;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.55);
+  background: var(--bg-2);
+  transform: rotate(var(--rot));
+  animation: hero-float 7s ease-in-out infinite;
+}
+.hero-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb-1 { --rot: -6deg; top: 0; right: 50px; z-index: 2; }
+.thumb-2 { --rot: 7deg; top: 100px; right: 0; z-index: 1; opacity: .85; animation-delay: 1.4s; }
+
+@keyframes hero-float {
+  0%, 100% { transform: rotate(var(--rot)) translateY(0); }
+  50% { transform: rotate(var(--rot)) translateY(-16px); }
+}
+
+@media (max-width: 900px) { .hero-stack { display: none; } }
+
 .marquee {
   margin-top: 100px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.2);
   padding: 18px 0;
   overflow: hidden;
-  position: relative;
-  margin-left: -92px; margin-right: -92px;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
 }
-@media (max-width: 800px) { .marquee { margin-left: -28px; margin-right: -28px; } }
 
 .marquee-track {
   display: inline-flex;
   gap: 56px;
-  animation: scroll 50s linear infinite;
+  animation: scroll 40s linear infinite;
   white-space: nowrap;
   font-family: var(--display);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
-.marquee-track span { color: var(--ink); }
+.marquee-track span { color: var(--ink-mute); transition: color 0.3s; }
+.marquee-track span:hover { color: var(--ink); }
 .marquee-track i {
   font-family: var(--serif);
   font-style: italic;
@@ -211,6 +320,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
   font-family: var(--mono);
   font-weight: 400;
+  opacity: 0.5;
 }
 @keyframes scroll {
   to { transform: translateX(-50%); }
@@ -218,10 +328,10 @@ a { color: inherit; text-decoration: none; }
 
 /* SECTIONS */
 .section {
-  padding: 140px 92px;
+  padding: 140px 40px;
   position: relative;
 }
-@media (max-width: 800px) { .section { padding: 100px 28px; } }
+@media (max-width: 800px) { .section { padding: 100px 24px; } }
 
 .section-head {
   display: grid;
@@ -237,7 +347,7 @@ a { color: inherit; text-decoration: none; }
 .section-num {
   font-family: var(--mono);
   font-size: 12px; letter-spacing: 0.1em;
-  color: var(--ink-low);
+  color: var(--accent);
   padding-top: 6px;
 }
 .section-label {
@@ -249,7 +359,7 @@ a { color: inherit; text-decoration: none; }
 .section-title {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(38px, 5vw, 68px);
+  font-size: clamp(38px, 4vw, 56px);
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -268,22 +378,21 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
 
 .about-prose {
-  font-size: 22px;
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 1.6;
   color: var(--ink);
-  max-width: 600px;
 }
 .about-prose p { margin-bottom: 24px; }
 .about-prose em {
   font-family: var(--serif);
   font-style: italic;
   color: var(--accent);
-  font-size: 1.05em;
+  font-size: 1.1em;
 }
 .about-prose .key {
-  color: var(--accent-3);
-  border-bottom: 1px dashed var(--accent-3);
-  padding-bottom: 1px;
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent);
 }
 
 .stats {
@@ -292,14 +401,18 @@ a { color: inherit; text-decoration: none; }
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
   align-self: start;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 .stat {
-  background: var(--bg);
-  padding: 24px 22px;
+  background: var(--surface);
+  padding: 30px 24px;
   display: flex; flex-direction: column; gap: 8px;
-  min-height: 130px;
+  transition: background 0.3s;
 }
+.stat:hover { background: var(--surface-2); }
 .stat-label {
   font-family: var(--mono);
   font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
@@ -307,7 +420,7 @@ a { color: inherit; text-decoration: none; }
 }
 .stat-value {
   font-family: var(--display);
-  font-size: 30px; font-weight: 700;
+  font-size: 28px; font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
   line-height: 1.1;
@@ -319,27 +432,35 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* WORK */
-.work-list { display: flex; flex-direction: column; gap: 0; }
+.work-list { display: flex; flex-direction: column; gap: 60px; }
 
 .project {
-  border-top: 1px solid var(--line);
-  padding: 80px 0;
+  background: rgba(21, 21, 27, 0.4);
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 20px;
+  padding: 60px;
   display: flex; flex-direction: column; gap: 40px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
-.project:last-child { border-bottom: 1px solid var(--line); }
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-color: rgba(199, 255, 62, 0.1);
+}
+@media (max-width: 800px) { .project { padding: 30px 20px; } }
 
 .project-head {
   display: grid;
   grid-template-columns: 80px 1fr;
-  gap: 40px;
+  gap: 20px;
   align-items: start;
 }
-@media (max-width: 900px) { .project-head { grid-template-columns: 1fr; gap: 16px; } }
+@media (max-width: 900px) { .project-head { grid-template-columns: 1fr; } }
 
 .project-num {
   font-family: var(--mono);
   font-size: 13px; letter-spacing: 0.1em;
-  color: var(--ink-low);
+  color: var(--accent);
   padding-top: 12px;
 }
 
@@ -347,20 +468,20 @@ a { color: inherit; text-decoration: none; }
 
 .project-title {
   font-family: var(--display);
-  font-size: clamp(34px, 4.5vw, 60px);
+  font-size: clamp(30px, 4vw, 50px);
   font-weight: 700;
   line-height: 1.0;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 .project-title em {
   font-family: var(--serif);
   font-style: italic; font-weight: 400;
-  color: var(--accent);
+  color: var(--ink-mute);
 }
 
 .project-pips {
   display: flex; flex-wrap: wrap;
-  gap: 8px 14px;
+  gap: 8px 12px;
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ink-low);
@@ -368,24 +489,27 @@ a { color: inherit; text-decoration: none; }
 }
 .project-pips .pip {
   border: 1px solid var(--line-2);
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
   color: var(--ink-mute);
+  background: var(--bg);
 }
 .project-pips .pip.role {
   border-color: var(--accent);
   color: var(--accent);
-  background: rgba(199, 255, 62, 0.06);
+  background: rgba(199, 255, 62, 0.05);
+  box-shadow: 0 0 10px rgba(199, 255, 62, 0.1);
 }
 
-/* Media — 16:9 box; iframes fill the box */
 .project-media {
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: var(--surface);
+  background: var(--bg-2);
   border: 1px solid var(--line);
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 .project-media iframe {
   position: absolute;
@@ -393,83 +517,163 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   border: 0;
-  background: var(--bg-2);
   display: block;
 }
 
-/* Image fills the 16:9 box (wide composites, concept art) */
 .project-media img.media-fill {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  transition: transform 0.7s ease;
+}
+.project:hover .project-media img.media-fill {
+  transform: scale(1.02);
 }
 
-/* Portrait media (magazine cover, posters) — show the whole piece, centered,
-   no cropping. Box auto-heights instead of forcing 16:9. */
-.project-media.media-portrait {
-  aspect-ratio: auto;
-  background:
-    radial-gradient(800px 500px at 50% 0%, rgba(199, 255, 62, 0.05), transparent 70%),
-    var(--bg-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 56px 24px;
+/* GamePlayMate embed: rendered at a fixed desktop width and scaled down to
+   fit the card via JS, so the embedded site's own responsive breakpoints
+   never see an odd/narrow width and never squish sideways at any browser
+   zoom level. */
+#gpmEmbed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
-.project-media.media-portrait img {
-  max-height: 78vh;
-  max-width: 520px;
+#gpmEmbed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 810px;
+  border: 0;
+  transform-origin: top left;
+}
+
+.video-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--line-2);
 }
-@media (max-width: 600px) {
-  .project-media.media-portrait { padding: 32px 16px; }
-  .project-media.media-portrait img { max-width: 100%; }
+.video-gallery-item {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-gallery-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px var(--accent-glow);
+}
+.video-gallery-item iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.gallery-caption {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: block;
+  text-align: center;
+}
+@media (max-width: 1024px) { .video-gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .video-gallery-grid { grid-template-columns: 1fr; } }
+
+/* Mixed Media Grid (Image + Embeds) */
+.mixed-media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  width: 100%;
+}
+.media-item {
+  width: 100%;
+  aspect-ratio: 1 / 1.414;
+  min-height: 450px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.media-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px var(--accent-glow);
+}
+.media-item iframe,
+.media-item img,
+.media-item embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 900px) {
+  .mixed-media-grid { grid-template-columns: 1fr; }
+  .media-item { aspect-ratio: auto; height: 70vh; }
 }
 
 .visit-overlay {
   position: absolute;
-  bottom: 18px; right: 18px;
+  bottom: 20px; right: 20px;
   z-index: 5;
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  background: var(--bg);
+  background: rgba(11, 11, 14, 0.9);
+  backdrop-filter: blur(4px);
   border: 1px solid var(--accent);
   color: var(--accent);
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
   display: inline-flex; align-items: center; gap: 8px;
-  transition: background .2s, color .2s, transform .2s;
+  transition: background .3s, color .3s, transform .3s, box-shadow .3s;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 .visit-overlay:hover {
   background: var(--accent);
   color: var(--bg);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--accent-glow);
 }
 
 .project-foot {
   display: grid;
-  grid-template-columns: 80px 1.4fr 1fr;
-  gap: 40px;
+  grid-template-columns: 80px 1fr auto;
+  gap: 20px;
   align-items: start;
 }
 @media (max-width: 900px) { .project-foot { grid-template-columns: 1fr; gap: 18px; } }
 
 .project-blurb {
   grid-column: 2;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--ink-mute);
-  max-width: 600px;
+  max-width: 700px;
 }
 @media (max-width: 900px) { .project-blurb { grid-column: 1; } }
 
@@ -479,28 +683,35 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono);
   font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ink);
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line-2);
   padding-bottom: 4px;
-  align-self: start; justify-self: start;
+  align-self: end; justify-self: end;
   transition: color .2s, border-color .2s, transform .2s;
 }
-@media (max-width: 900px) { .project-link { grid-column: 1; } }
+@media (max-width: 900px) { .project-link { grid-column: 1; justify-self: start; } }
 .project-link:hover {
   color: var(--accent);
   border-color: var(--accent);
   transform: translateX(4px);
 }
-.project-link .arr { font-family: var(--display); transform: translateY(-1px); }
 
-/* TOOLKIT */
+/* FIXED TOOLKIT GRID */
 .toolkit {
   display: grid;
-  grid-template-columns: 80px repeat(3, minmax(0, 1fr));
-  gap: 40px;
+  grid-template-columns: 80px 1fr 1fr; /* Locks to exactly 3 columns */
+  gap: 50px 40px;
+  background: rgba(21, 21, 27, 0.4);
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 20px;
+  padding: 60px;
+}
+.toolkit-spacer {
+  grid-column: 1;
+  grid-row: 1 / span 2; /* Forces spacer to take up full left column */
 }
 @media (max-width: 900px) {
-  .toolkit { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .toolkit > .toolkit-spacer { display: none; }
+  .toolkit { grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 24px; }
+  .toolkit-spacer { display: none; }
 }
 @media (max-width: 600px) {
   .toolkit { grid-template-columns: 1fr; }
@@ -510,29 +721,33 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-mute);
-  margin-bottom: 20px; padding-bottom: 14px;
+  margin-bottom: 24px; padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
 }
 .tool-group h3 .num {
-  color: var(--ink-low);
+  color: var(--accent);
   margin-right: 10px;
   font-weight: 400;
 }
 
 .tool-group ul {
   list-style: none;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 16px;
 }
 .tool-group li {
   font-family: var(--display);
-  font-size: 22px; font-weight: 500;
+  font-size: 20px; font-weight: 500;
   line-height: 1.15;
-  letter-spacing: -0.015em;
   color: var(--ink);
   display: flex; align-items: baseline; gap: 12px;
+  transition: transform 0.2s, color 0.2s;
+}
+.tool-group li:hover {
+  transform: translateX(5px);
+  color: #fff;
 }
 .tool-group li::before {
-  content: "→";
+  content: "▹";
   font-family: var(--mono);
   color: var(--accent);
   font-size: 14px;
@@ -540,10 +755,13 @@ a { color: inherit; text-decoration: none; }
 }
 .tool-group li small {
   font-family: var(--mono);
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-low);
   margin-left: auto;
   font-weight: 400;
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 /* TIMELINE */
@@ -561,25 +779,30 @@ a { color: inherit; text-decoration: none; }
 }
 .timeline-list li {
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 120px 1fr auto;
   gap: 28px;
-  align-items: baseline;
-  padding: 22px 0;
+  align-items: center;
+  padding: 30px 0;
   border-bottom: 1px solid var(--line);
   transition: padding .3s, background .3s;
 }
 .timeline-list li:hover {
-  padding-left: 16px;
-  background: linear-gradient(90deg, rgba(199, 255, 62, 0.04), transparent);
+  padding-left: 20px;
+  background: linear-gradient(90deg, rgba(199, 255, 62, 0.03), transparent);
 }
 @media (max-width: 700px) {
-  .timeline-list li { grid-template-columns: 1fr; gap: 4px; }
+  .timeline-list li { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; align-items: start; }
 }
 
 .tl-year {
   font-family: var(--mono);
   font-size: 12px; letter-spacing: 0.08em;
-  color: var(--ink-low);
+  color: var(--accent);
+  background: rgba(199, 255, 62, 0.05);
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-block;
+  width: max-content;
 }
 .tl-title {
   font-family: var(--display);
@@ -590,16 +813,24 @@ a { color: inherit; text-decoration: none; }
 .tl-title em {
   font-family: var(--serif);
   font-style: italic; font-weight: 400;
-  color: var(--accent);
+  color: var(--ink-mute);
 }
 .tl-place {
   font-family: var(--body);
   font-size: 14px;
   color: var(--ink-mute);
+  text-align: right;
 }
+@media (max-width: 700px) { .tl-place { text-align: left; } }
 
 /* CONTACT */
-.contact-block { text-align: center; padding: 60px 0; }
+.contact-block { 
+  text-align: center; 
+  padding: 100px 40px; 
+  background: radial-gradient(circle at 50% 50%, rgba(199, 255, 62, 0.05), transparent 60%);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
 .contact-eyebrow {
   font-family: var(--mono);
   font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -614,11 +845,11 @@ a { color: inherit; text-decoration: none; }
 
 .contact-headline {
   font-family: var(--display);
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(40px, 6vw, 90px);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 1;
   letter-spacing: -0.04em;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 .contact-headline em {
   font-family: var(--serif);
@@ -628,19 +859,23 @@ a { color: inherit; text-decoration: none; }
 
 .contact-email {
   font-family: var(--display);
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(20px, 3vw, 36px);
   font-weight: 500;
   color: var(--ink);
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--accent);
   padding-bottom: 6px;
   display: inline-block;
   letter-spacing: -0.02em;
-  transition: color .2s, border-color .2s;
+  transition: color .2s, border-color .2s, text-shadow .2s;
 }
-.contact-email:hover { color: var(--accent); border-color: var(--accent); }
+.contact-email:hover { 
+  color: var(--accent); 
+  border-color: transparent; 
+  text-shadow: 0 0 20px var(--accent-glow);
+}
 
 .contact-row {
-  margin-top: 40px;
+  margin-top: 50px;
   display: flex; justify-content: center; gap: 40px;
   flex-wrap: wrap;
   font-family: var(--mono);
@@ -651,28 +886,28 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 0;
   border-bottom: 1px solid transparent;
-  transition: color .2s, border-color .2s;
+  transition: color .3s, border-color .3s;
 }
 .contact-row a:hover {
   color: var(--ink);
   border-bottom-color: var(--accent);
 }
 .contact-row a::before {
-  content: "▸";
+  content: "▹";
   color: var(--accent);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 32px 92px;
+  padding: 40px 0;
   display: flex; justify-content: space-between; align-items: center;
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink-low);
   flex-wrap: wrap; gap: 16px;
 }
-@media (max-width: 800px) { footer { padding: 28px; } }
+@media (max-width: 800px) { footer { padding: 30px 24px; flex-direction: column; text-align: center; } }
 
 footer .signoff em {
   font-family: var(--serif);
@@ -685,8 +920,8 @@ footer .signoff em {
 
 body.js .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .9s ease, transform .9s ease;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
@@ -704,43 +939,60 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 <body>
 
 <nav class="nav" id="nav">
-  <a href="#top" class="brand">
-    <span class="brand-dot"></span>
-    Chathura Ishtaweera <span style="color: var(--ink-low);">— Game Dev</span>
-  </a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#toolkit">Toolkit</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-dot"></span>
+      Chathura Ishtaweera <span style="color: var(--ink-low);">— Game Dev</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </nav>
 
-<section class="hero" id="top">
+<section class="hero container" id="top">
   <div class="hero-meta">
     <span><span class="live"></span>Currently building games · Sri Lanka</span>
-    <span>Portfolio · 2026 · v1.0</span>
+    <span>Portfolio · 2026 · v1.2</span>
   </div>
 
-  <div>
-    <h1 class="hero-name reveal">
-      Chathura<br>
-      <span class="ish">Ishtaweera</span><span class="arrow">↗</span>
-    </h1>
+  <div class="hero-body">
+    <div class="hero-copy">
+      <h1 class="hero-name reveal">
+        Chathura<br>
+        <span class="ish">Ishtaweera</span><span class="arrow">↗</span>
+      </h1>
 
-    <div class="hero-tagline reveal" style="transition-delay: .15s;">
-      <div class="role">
-        <span class="bar"></span>
-        Game developer in training · Level designer · Multimedia, NSBM
+      <div class="hero-tagline reveal" style="transition-delay: .15s;">
+        <div class="role">
+          <span class="bar"></span>
+          Game developer & Level designer · Multimedia, NSBM
+        </div>
+        <p class="pitch">
+          Building playable worlds, one level at a time. Seamlessly bridging technical execution and visual storytelling across the full digital production pipeline.
+        </p>
       </div>
-      <p class="pitch">
-        Building playable worlds, one level at a time. On a long road from
-        student to studio founder — and learning out loud the whole way.
-      </p>
+
+      <a href="#work" class="hero-scroll reveal" style="transition-delay: .3s;">
+        <span class="hero-scroll-line"></span>
+        See the work
+      </a>
+    </div>
+
+    <div class="hero-stack reveal" style="transition-delay: .3s;" aria-hidden="true">
+      <div class="hero-thumb thumb-1">
+        <img src="images/photoshop-dragon.jpg" alt="" />
+      </div>
+      <div class="hero-thumb thumb-2">
+        <img src="images/illustrator-magazine.jpg" alt="" />
+      </div>
     </div>
   </div>
 
-  <div class="marquee reveal" style="transition-delay: .3s;">
+  <div class="marquee reveal" style="transition-delay: .45s;">
     <div class="marquee-track">
       <span>Level Design</span><span class="star">✦</span>
       <span>C++</span><span class="star">✦</span>
@@ -763,357 +1015,456 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 </section>
 
 <section class="section" id="about">
-  <header class="section-head reveal">
-    <div class="section-num">01</div>
-    <div class="section-label">About / Manifesto</div>
-    <h2 class="section-title">Player first.<br>Then everything <em>else.</em></h2>
-  </header>
+  <div class="container">
+    <header class="section-head reveal">
+      <div class="section-num">01</div>
+      <div class="section-label">About / Manifesto</div>
+      <h2 class="section-title">Player first.<br>Then everything <em>else.</em></h2>
+    </header>
 
-  <div class="about-grid reveal">
-    <div></div>
-    <div class="about-prose">
-      <p>
-        I'm a multimedia undergraduate at <span class="key">NSBM</span>, but I learned
-        most of what I know about games by playing them — obsessively, critically,
-        and with a notepad open. <em>The Division 2.</em> <em>Cyberpunk 2077.</em>
-        <em>Honkai: Star Rail.</em> Hours sunk into systems, level flow, encounter
-        design, UI craft.
-      </p>
-      <p>
-        On the build side I work across the full pipeline:
-        <span class="key">level design</span> for a team game project,
-        <span class="key">3D character modelling</span> in VRoid Studio,
-        full <span class="key">web platforms</span> in HTML / CSS / JavaScript, and
-        <span class="key">UI / visual design</span> in Photoshop and Illustrator.
-        The thread tying it all together is the same question — what makes this
-        <em>feel</em> good to play?
-      </p>
-      <p>
-        The long arc: ship games people love, then build the studio that makes more
-        of them. The short arc: keep learning, keep shipping, keep getting better.
-      </p>
-    </div>
+    <div class="about-grid reveal">
+      <div></div>
+      <div class="about-prose">
+        <p>
+          Final-year Multimedia undergraduate at <span class="key">NSBM</span> with a strong focus on game development and digital production. Brings hands-on experience as a Level Designer in Unreal Engine 5, coupled with robust video editing capabilities in Premiere Pro for crafting high-quality trailers, cutscenes, and audio-visual presentations.
+        </p>
+        <p>
+          Supported by programming foundations spanning C++, Java, and JavaScript. Comfortable navigating the full creative pipeline—from gameplay design and 3D character modeling to UI development—with a lifelong instinct for what makes a digital experience engaging.
+        </p>
+      </div>
 
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-label">Based in</span>
-        <span class="stat-value">Sri <em>Lanka</em></span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Reading list</span>
-        <span class="stat-value"><em>Type-Moon,</em><br>Fate</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Current focus</span>
-        <span class="stat-value">Level <em>design</em></span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">North star</span>
-        <span class="stat-value">Own <em>studio</em></span>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-label">Based in</span>
+          <span class="stat-value">Sri <em>Lanka</em></span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Reading list</span>
+          <span class="stat-value"><em>Type-Moon,</em><br>Fate</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Current focus</span>
+          <span class="stat-value">Level <em>design</em></span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Currently</span>
+          <span class="stat-value">Final <em>Year</em></span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="section" id="work">
-  <header class="section-head reveal">
-    <div class="section-num">02</div>
-    <div class="section-label">Selected Work · 2024–2026</div>
-    <h2 class="section-title">Things I've <em>built.</em></h2>
-  </header>
+  <div class="container">
+    <header class="section-head reveal">
+      <div class="section-num">02</div>
+      <div class="section-label">Selected Work · 2024–2026</div>
+      <h2 class="section-title">Things I've <em>built.</em></h2>
+    </header>
 
-  <div class="work-list">
+    <div class="work-list">
 
-    <article class="project reveal">
-      <header class="project-head">
-        <span class="project-num">P/01</span>
-        <div class="project-titleblock">
-          <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
-          <div class="project-pips">
-            <span class="pip role">Level Designer</span>
-            <span class="pip">University coursework</span>
-            <span class="pip">NSBM</span>
-            <span class="pip">2025</span>
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/01</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Level Designer</span>
+              <span class="pip">University coursework</span>
+              <span class="pip">NSBM</span>
+              <span class="pip">2025</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <iframe
+            src="https://drive.google.com/file/d/100dp9fPpFp_fgxR-mt1Wp5YAoGEsziIE/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            title="Level design gameplay"></iframe>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            Designed and built playable levels for a team-developed game produced as
+            a university group project. Owned the level layout, mission flow,
+            encounter pacing, and environmental composition — collaborating with
+            programmers and artists to translate paper design into a working
+            in-engine build.
+          </p>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/02</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Solo · Designer + Dev</span>
+              <span class="pip">HTML5 / CSS3 / JS</span>
+              <span class="pip">Live</span>
+              <span class="pip">2025</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <div class="gpm-embed" id="gpmEmbed">
+            <iframe
+              src="https://zerosnake00.github.io/GameplayMate/"
+              loading="lazy"
+              title="GamePlayMate live site"></iframe>
+          </div>
+          <a class="visit-overlay"
+             href="https://zerosnake00.github.io/GameplayMate/"
+             target="_blank" rel="noopener">
+            Visit live <span style="font-family: var(--display);">↗</span>
+          </a>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            End-to-end web platform offering specialised services for gacha-game
+            players (Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless
+            Zone Zero). Born out of frustration with arbitrary platform restrictions
+            on Fiverr — built from the ground up: visual system, hero composition,
+            responsive card grid, custom video players, expandable lists.
+          </p>
+          <a class="project-link"
+             href="https://github.com/ZeroSnake00/GameplayMate"
+             target="_blank" rel="noopener">
+            View source <span>↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/03</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">3D Artist</span>
+              <span class="pip">VRoid Studio</span>
+              <span class="pip">Multimedia coursework</span>
+              <span class="pip">2024</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <iframe
+            src="https://drive.google.com/file/d/1vS93WC3knlrKnG1-b-5gkbKR3NB7xSWI/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            title="3D character creation in VRoid Studio"></iframe>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            Designed and modelled an original 3D character in VRoid Studio —
+            silhouette, proportions, facial parameters, outfit composition, and
+            texturing. End-to-end character pipeline thinking, built with the
+            long-term ambition of slotting models like this straight into a game
+            engine.
+          </p>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/04</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Post-Production<br><em>— video editing.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Video Editor</span>
+              <span class="pip">Adobe Premiere Pro</span>
+              <span class="pip">Adobe After Effects</span>
+              <span class="pip">2026</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="video-gallery-grid">
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1CdfamwyN2CH65yJAE1voC9QOWsPzPH00/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Calm your Interview nerves"></iframe>
+            </div>
+            <span class="gallery-caption">Calm your Interview nerves</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1ysbuQzEs4rGLqeXLujsY23UFKUwEW0l1/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Plan B coffeehouse"></iframe>
+            </div>
+            <span class="gallery-caption">Plan B coffeehouse</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1xf3MNjy8z-xufsP3Jrz7JQIb8A-gPk8l/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Plan B coffeehouse"></iframe>
+            </div>
+            <span class="gallery-caption">Plan B coffeehouse</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1ua8iO4-3RNSsMTjCBCegQtK5XeV5DnqV/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Plan B coffeehouse"></iframe>
+            </div>
+            <span class="gallery-caption">Plan B coffeehouse</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/13KXO7MiCrBWB53B1wpswyxv8w7laefjy/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Singha Yoga Retreat"></iframe>
+            </div>
+            <span class="gallery-caption">Singha Yoga Retreat</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1Um0DARyHnBRS-Zl6F0xg0lp3d_vQ7mkf/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="GachaSL main Promo"></iframe>
+            </div>
+            <span class="gallery-caption">GachaSL main Promo</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1SheOt44-ccA178xp3NJIaLFQQo4Dod3L/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Ready Player None (shot film edit)"></iframe>
+            </div>
+            <span class="gallery-caption">Ready Player None (shot film edit)</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1XqJLszFj7pr9qcCwroxuyfgpTzPbFyQN/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="AI short clip combined advertisement"></iframe>
+            </div>
+            <span class="gallery-caption">AI short clip combined advertisement</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1IOFLHIPSwoKgfoM0EkANN-Nkb1mBRWRX/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="News Edit"></iframe>
+            </div>
+            <span class="gallery-caption">News Edit</span>
           </div>
         </div>
-      </header>
 
-      <div class="project-media">
-        <iframe
-          src="https://drive.google.com/file/d/100dp9fPpFp_fgxR-mt1Wp5YAoGEsziIE/preview"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          loading="lazy"
-          title="Level design gameplay"></iframe>
-      </div>
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            A collection of video editing and post-production work, including an experimental audio-visual production project built utilizing local AI video models and Adobe Premiere Pro. This gallery showcases pacing, rhythm, and workflow adaptability across various media formats, ranging from promotional edits like the Singha Yoga Retreat to creative narrative composites.
+          </p>
+        </div>
+      </article>
 
-      <div class="project-foot">
-        <p class="project-blurb">
-          Designed and built playable levels for a team-developed game produced as
-          a university group project. Owned the level layout, mission flow,
-          encounter pacing, and environmental composition — collaborating with
-          programmers and artists to translate paper design into a working
-          in-engine build.
-        </p>
-      </div>
-    </article>
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/05</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Fantasy scene<br><em>— photo composite.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Digital Artist</span>
+              <span class="pip">Adobe Photoshop</span>
+              <span class="pip">Concept / Environment</span>
+              <span class="pip">2024</span>
+            </div>
+          </div>
+        </header>
 
-    <article class="project reveal">
-      <header class="project-head">
-        <span class="project-num">P/02</span>
-        <div class="project-titleblock">
-          <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
-          <div class="project-pips">
-            <span class="pip role">Solo · Designer + Dev</span>
-            <span class="pip">HTML5 / CSS3 / JS</span>
-            <span class="pip">Live</span>
-            <span class="pip">2025</span>
+        <div class="project-media">
+          <img class="media-fill"
+               src="images/photoshop-dragon.jpg"
+               alt="Fantasy photo manipulation — a dragon impaled by glowing magic swords flying over a lava-fed canyon under a blood moon"
+               loading="lazy" />
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            A composited fantasy environment built in Photoshop — dragon, glowing
+            enchanted blades, blood moon, lava river, and a cliff with figures for
+            scale. The work is in the integration: matching light direction, colour
+            grading every element to one palette, and layering atmospheric haze so
+            separate stock pieces read as a single believable world. Exactly the
+            mood-and-scene thinking that feeds game environment art.
+          </p>
+        </div>
+      </article>
+
+      <!-- =============== P/06 — ILLUSTRATOR MAGAZINE LAYOUT =============== -->
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/06</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">STRUCTURES<br><em>— editorial layout.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Vector / Layout Designer</span>
+              <span class="pip">Adobe Illustrator</span>
+              <span class="pip">Print Design</span>
+              <span class="pip">2024</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="mixed-media-grid">
+          <!-- Original Cover Image -->
+          <div class="media-item">
+            <img 
+              src="images/illustrator-magazine.jpg" 
+              alt="STRUCTURES Magazine Original Vector Cover" 
+              loading="lazy" />
+          </div>
+
+          <!-- Magazine Cover -->
+          <div class="media-item">
+            <img
+              src="images/magazin-cover.jpg"
+              alt="STRUCTURES Magazine cover layout"
+              loading="lazy" />
+          </div>
+
+          <!-- Inner Page -->
+          <div class="media-item">
+            <img
+              src="images/magazin-page.jpg"
+              alt="STRUCTURES Magazine inner spread layout"
+              loading="lazy" />
           </div>
         </div>
-      </header>
 
-      <div class="project-media">
-        <iframe
-          src="https://zerosnake00.github.io/GameplayMate/"
-          loading="lazy"
-          title="GamePlayMate live site"></iframe>
-        <a class="visit-overlay"
-           href="https://zerosnake00.github.io/GameplayMate/"
-           target="_blank" rel="noopener">
-          Visit live <span style="font-family: var(--display);">↗</span>
-        </a>
-      </div>
-
-      <div class="project-foot">
-        <p class="project-blurb">
-          End-to-end web platform offering specialised services for gacha-game
-          players (Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless
-          Zone Zero). Born out of frustration with arbitrary platform restrictions
-          on Fiverr — built from the ground up: visual system, hero composition,
-          responsive card grid, custom video players, expandable lists.
-        </p>
-        <a class="project-link"
-           href="https://github.com/ZeroSnake00/GameplayMate"
-           target="_blank" rel="noopener">
-          View source <span class="arr">↗</span>
-        </a>
-      </div>
-    </article>
-
-    <article class="project reveal">
-      <header class="project-head">
-        <span class="project-num">P/03</span>
-        <div class="project-titleblock">
-          <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
-          <div class="project-pips">
-            <span class="pip role">3D Artist</span>
-            <span class="pip">VRoid Studio</span>
-            <span class="pip">Multimedia coursework</span>
-            <span class="pip">2024</span>
-          </div>
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            A print magazine layout built entirely in Illustrator — featuring a vector skyline 
+            illustration cover and a fully typeset inner spread. Displayed here alongside the 
+            source PDF files to demonstrate proper print-ready layout structure, text wrapping, 
+            and typographic hierarchy. (Look closely at the body text for some hidden easter eggs).
+          </p>
         </div>
-      </header>
+      </article>
 
-      <div class="project-media">
-        <iframe
-          src="https://drive.google.com/file/d/1vS93WC3knlrKnG1-b-5gkbKR3NB7xSWI/preview"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          loading="lazy"
-          title="3D character creation in VRoid Studio"></iframe>
-      </div>
-
-      <div class="project-foot">
-        <p class="project-blurb">
-          Designed and modelled an original 3D character in VRoid Studio —
-          silhouette, proportions, facial parameters, outfit composition, and
-          texturing. End-to-end character pipeline thinking, built with the
-          long-term ambition of slotting models like this straight into a game
-          engine.
-        </p>
-      </div>
-    </article>
-
-    <!-- =============== P/04 — PHOTOSHOP COMPOSITE =============== -->
-    <article class="project reveal">
-      <header class="project-head">
-        <span class="project-num">P/04</span>
-        <div class="project-titleblock">
-          <h3 class="project-title">Fantasy scene<br><em>— photo composite.</em></h3>
-          <div class="project-pips">
-            <span class="pip role">Digital Artist</span>
-            <span class="pip">Adobe Photoshop</span>
-            <span class="pip">Concept / Environment</span>
-            <span class="pip">2024</span>
-          </div>
-        </div>
-      </header>
-
-      <div class="project-media">
-        <img class="media-fill"
-             src="images/photoshop-dragon.jpg"
-             alt="Fantasy photo manipulation — a dragon impaled by glowing magic swords flying over a lava-fed canyon under a blood moon, with two figures on a cliff for scale"
-             loading="lazy" />
-      </div>
-
-      <div class="project-foot">
-        <p class="project-blurb">
-          A composited fantasy environment built in Photoshop — dragon, glowing
-          enchanted blades, blood moon, lava river, and a cliff with figures for
-          scale. The work is in the integration: matching light direction, colour
-          grading every element to one palette, and layering atmospheric haze so
-          separate stock pieces read as a single believable world. Exactly the
-          mood-and-scene thinking that feeds game environment art.
-        </p>
-      </div>
-    </article>
-
-    <!-- =============== P/05 — ILLUSTRATOR MAGAZINE COVER =============== -->
-    <article class="project reveal">
-      <header class="project-head">
-        <span class="project-num">P/05</span>
-        <div class="project-titleblock">
-          <h3 class="project-title">STRUCTURES<br><em>— magazine cover.</em></h3>
-          <div class="project-pips">
-            <span class="pip role">Vector / Layout Designer</span>
-            <span class="pip">Adobe Illustrator</span>
-            <span class="pip">Print Design</span>
-            <span class="pip">2024</span>
-          </div>
-        </div>
-      </header>
-
-      <div class="project-media media-portrait">
-        <img
-          src="images/illustrator-magazine.jpg"
-          alt="STRUCTURES architecture magazine cover — vector illustration of the Colombo skyline and Lotus Tower in purple silhouette against an orange and yellow sunburst, with a bold masthead"
-          loading="lazy" />
-      </div>
-
-      <div class="project-foot">
-        <p class="project-blurb">
-          A print magazine cover built entirely in Illustrator — vector skyline
-          illustration, sunburst composition, and a strong typographic system
-          with a full-bleed masthead. Set up properly for print with CMYK colour,
-          crop marks, and registration, balancing a loud hero illustration against
-          clean editorial hierarchy.
-        </p>
-      </div>
-    </article>
-
+    </div>
   </div>
 </section>
 
 <section class="section" id="toolkit">
-  <header class="section-head reveal">
-    <div class="section-num">03</div>
-    <div class="section-label">Toolkit / Stack</div>
-    <h2 class="section-title">What I <em>use.</em></h2>
-  </header>
+  <div class="container">
+    <header class="section-head reveal">
+      <div class="section-num">03</div>
+      <div class="section-label">Toolkit / Stack</div>
+      <h2 class="section-title">What I <em>use.</em></h2>
+    </header>
 
-  <div class="toolkit reveal">
-    <div class="toolkit-spacer"></div>
+    <div class="toolkit reveal">
+      <div class="toolkit-spacer"></div>
+      
+      <div class="tool-group">
+        <h3><span class="num">01</span>Game &amp; Design</h3>
+        <ul>
+          <li>Level Design</li>
+          <li>Game Systems</li>
+          <li>VRoid Studio</li>
+          <li>UI / UX Design</li>
+        </ul>
+      </div>
 
-    <div class="tool-group">
-      <h3><span class="num">a/</span>Game &amp; Design</h3>
-      <ul>
-        <li>Level Design</li>
-        <li>Game Systems</li>
-        <li>VRoid Studio</li>
-        <li>UI / UX Design</li>
-      </ul>
-    </div>
+      <div class="tool-group">
+        <h3><span class="num">02</span>Code</h3>
+        <ul>
+          <li>C++</li>
+          <li>Java</li>
+          <li>JavaScript</li>
+          <li>HTML5 &amp; CSS3</li>
+          <li>Git / GitHub</li>
+        </ul>
+      </div>
 
-    <div class="tool-group">
-      <h3><span class="num">b/</span>Code</h3>
-      <ul>
-        <li>C++</li>
-        <li>Java</li>
-        <li>JavaScript</li>
-        <li>HTML5 &amp; CSS3</li>
-        <li>Git / GitHub</li>
-      </ul>
-    </div>
+      <div class="tool-group">
+        <h3><span class="num">03</span>Visual</h3>
+        <ul>
+          <li>Adobe Photoshop</li>
+          <li>Adobe Illustrator</li>
+          <li>Adobe Premiere Pro</li>
+          <li>Adobe After Effects</li>
+          <li>Typography</li>
+        </ul>
+      </div>
 
-    <div class="toolkit-spacer"></div>
-
-    <div class="tool-group">
-      <h3><span class="num">c/</span>Visual</h3>
-      <ul>
-        <li>Adobe Photoshop</li>
-        <li>Adobe Illustrator</li>
-        <li>Typography</li>
-      </ul>
-    </div>
-
-    <div class="tool-group">
-      <h3><span class="num">d/</span>Currently Learning</h3>
-      <ul>
-        <li>Game engines <small>Unity / Unreal</small></li>
-        <li>C# scripting</li>
-        <li>Shader basics</li>
-      </ul>
+      <div class="tool-group">
+        <h3><span class="num">04</span>Currently Learning</h3>
+        <ul>
+          <li>Game engines <small>Unity / Unreal</small></li>
+          <li>C# scripting</li>
+          <li>Shader basics</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section" id="timeline">
-  <header class="section-head reveal">
-    <div class="section-num">04</div>
-    <div class="section-label">Education / Path</div>
-    <h2 class="section-title">The <em>route</em> here.</h2>
-  </header>
+  <div class="container">
+    <header class="section-head reveal">
+      <div class="section-num">04</div>
+      <div class="section-label">Education / Path</div>
+      <h2 class="section-title">The <em>route</em> here.</h2>
+    </header>
 
-  <div class="timeline reveal">
-    <div></div>
-    <ol class="timeline-list">
-      <li>
-        <span class="tl-year">2023 → Now</span>
-        <span class="tl-title">BSc <em>(Hons)</em> in Multimedia</span>
-        <span class="tl-place">National School of Business Management</span>
-      </li>
-      <li>
-        <span class="tl-year">2018</span>
-        <span class="tl-title">GCE Advanced Level</span>
-        <span class="tl-place">Ananda College, Colombo</span>
-      </li>
-      <li>
-        <span class="tl-year">2016</span>
-        <span class="tl-title">Diploma in IT <em>w/</em> E-commerce</span>
-        <span class="tl-place">Esoft Metro Campus</span>
-      </li>
-      <li>
-        <span class="tl-year">2016</span>
-        <span class="tl-title">Diploma in English</span>
-        <span class="tl-place">Esoft Metro Campus</span>
-      </li>
-      <li>
-        <span class="tl-year">2015</span>
-        <span class="tl-title">GCE Ordinary Level</span>
-        <span class="tl-place">Nalanda College, Colombo</span>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="section" id="contact">
-  <div class="contact-block reveal">
-    <div class="contact-eyebrow">Get in touch</div>
-    <h2 class="contact-headline">Let's build<br>something <em>worth</em><br>playing.</h2>
-
-    <a class="contact-email" href="mailto:chathuraishtaweera@gmail.com">
-      chathuraishtaweera@gmail.com
-    </a>
-
-    <div class="contact-row">
-      <a href="https://github.com/ZeroSnake00" target="_blank" rel="noopener">GitHub / ZeroSnake00</a>
-      <a href="tel:+94778878936">+94 77 887 8936</a>
-      <a href="https://zerosnake00.github.io/GameplayMate/" target="_blank" rel="noopener">GamePlayMate /↗</a>
+    <div class="timeline reveal">
+      <div></div>
+      <ol class="timeline-list">
+        <li>
+          <span class="tl-year">2023 → Now</span>
+          <span class="tl-title">BSc <em>(Hons)</em> in Multimedia</span>
+          <span class="tl-place">National School of Business Management</span>
+        </li>
+        <li>
+          <span class="tl-year">2018</span>
+          <span class="tl-title">GCE Advanced Level</span>
+          <span class="tl-place">Ananda College, Colombo</span>
+        </li>
+        <li>
+          <span class="tl-year">2016</span>
+          <span class="tl-title">Diploma in IT <em>w/</em> E-commerce</span>
+          <span class="tl-place">Esoft Metro Campus</span>
+        </li>
+        <li>
+          <span class="tl-year">2016</span>
+          <span class="tl-title">Diploma in English</span>
+          <span class="tl-place">Esoft Metro Campus</span>
+        </li>
+        <li>
+          <span class="tl-year">2015</span>
+          <span class="tl-title">GCE Ordinary Level</span>
+          <span class="tl-place">Nalanda College, Colombo</span>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
 
-<footer>
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-block reveal">
+      <div class="contact-eyebrow">Get in touch</div>
+      <h2 class="contact-headline">Let's build<br>something <em>worth</em><br>playing.</h2>
+
+      <a class="contact-email" href="mailto:chathuraishtaweera@gmail.com">
+        chathuraishtaweera@gmail.com
+      </a>
+
+      <div class="contact-row">
+        <a href="https://github.com/ZeroSnake00" target="_blank" rel="noopener">GitHub / ZeroSnake00</a>
+        <a href="tel:+94778878936">+94 77 887 8936</a>
+        <a href="https://zerosnake00.github.io/GameplayMate/" target="_blank" rel="noopener">GamePlayMate /↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="container">
   <span>© 2026 Chathura Ishtaweera</span>
   <span class="signoff">Designed &amp; built by <em>me,</em> from Delgoda.</span>
   <span>Open to game-dev opportunities</span>
@@ -1151,6 +1502,23 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  (function () {
+    const wrap = document.getElementById('gpmEmbed');
+    if (!wrap) return;
+    const iframe = wrap.querySelector('iframe');
+    const BASE_W = 1440; // width GamePlayMate is rendered at before scaling down
+    const scaleFrame = () => {
+      const scale = wrap.clientWidth / BASE_W;
+      iframe.style.transform = `scale(${scale})`;
+    };
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(scaleFrame).observe(wrap);
+    } else {
+      window.addEventListener('resize', scaleFrame, { passive: true });
+    }
+    scaleFrame();
   })();
 </script>
 
