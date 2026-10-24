@@ -636,6 +636,27 @@ a { color: inherit; text-decoration: none; }
   .media-item { aspect-ratio: auto; height: 70vh; }
 }
 
+/* Lavender Marriage (P/07): two-up video row, 16:9 screenshot tiles, credits */
+.video-gallery-grid.lm-two { grid-template-columns: repeat(2, 1fr); }
+.lm-shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.lm-credits {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+  color: var(--ink-low);
+  text-align: center;
+}
+.lm-credits span { color: var(--ink-mute); }
+@media (max-width: 600px) { .video-gallery-grid.lm-two { grid-template-columns: 1fr; } }
+
 .visit-overlay {
   position: absolute;
   bottom: 20px; right: 20px;
@@ -1065,9 +1086,89 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
     <div class="work-list">
 
+      <!-- =============== P/01 — LAVENDER MARRIAGE (FINAL-YEAR PROJECT) =============== -->
       <article class="project reveal">
         <header class="project-head">
           <span class="project-num">P/01</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Lavender Marriage<br><em>— 3D visual novel.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Solo · Designer + Dev</span>
+              <span class="pip">Unreal Engine 5.8 · C++</span>
+              <span class="pip">Final-year project</span>
+              <span class="pip">2026</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <img class="media-fill"
+               src="images/lavender-marriage/01-balcony-title.webp"
+               alt="Lavender Marriage title screen — a glass wind chime on an apartment balcony at sunset"
+               loading="lazy" />
+        </div>
+
+        <div class="video-gallery-grid lm-two">
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1cWJ7eofMQntcxOnUIl2sIWIi7zAH4lcY/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Lavender Marriage trailer"></iframe>
+            </div>
+            <span class="gallery-caption">Trailer</span>
+          </div>
+          <div>
+            <div class="video-gallery-item">
+              <iframe src="https://drive.google.com/file/d/1EEKV_PvnaicypqOecvX9nLrbsihlJZCH/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" title="Lavender Marriage showcase: making-of and gameplay"></iframe>
+            </div>
+            <span class="gallery-caption">Showcase: making-of and gameplay</span>
+          </div>
+        </div>
+
+        <p class="lm-credits">
+          Music: <span>"Wildflowers" by Scott Buckley</span>, CC BY 4.0<br>
+          Voices: <span>VOICEVOX:波音リツ</span> (Akane) · <span>VOICEVOX:東北ずん子</span> (Mio) ·
+          <span>VOICEVOX:ずんだもん</span> (Hina) · <span>VOICEVOX:No.7</span> (Sota) ·
+          <span>VOICEVOX:琴詠ニア</span> (Riku)
+        </p>
+
+        <div class="video-gallery-grid">
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/02-kids-bedroom.webp" alt="In-game: the family of five in the kids' bedroom, morning dialogue" loading="lazy" />
+          </div>
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/03-akane-intro.webp" alt="Character intro card for Akane on a lavender banner" loading="lazy" />
+          </div>
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/04-choice.webp" alt="Dialogue choice: 'I love you.' or 'Give my regards to your husband.'" loading="lazy" />
+          </div>
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/05-painting.webp" alt="In-game: an illustrated family beach painting hanging on the wall" loading="lazy" />
+          </div>
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/06-futon-cg.webp" alt="Illustrated scene: two women waking on futons beside an electric fan" loading="lazy" />
+          </div>
+          <div class="video-gallery-item lm-shot">
+            <img src="images/lavender-marriage/07-vroid-face.webp" alt="VRoid Studio face editor beside the character's reference sheet" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            A 3D visual novel set in Japan. Instead of a hero's story, it deals with
+            dark themes and characters whose choices aren't easy to defend. Built in
+            Unreal Engine 5 with C++, using VRM4U to bring in the five characters I
+            modelled in VRoid Studio. The illustrated scenes were made with Gemini and
+            Google Flow, and the characters are voiced with VOICEVOX. The trailer
+            doubles as the first-launch screen, playing while the game compiles its
+            shaders. Next: artist-drawn illustrations, real voice actors, and a proper
+            Japanese translation.
+          </p>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/02</span>
           <div class="project-titleblock">
             <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
             <div class="project-pips">
@@ -1102,7 +1203,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
       <article class="project reveal">
         <header class="project-head">
-          <span class="project-num">P/02</span>
+          <span class="project-num">P/03</span>
           <div class="project-titleblock">
             <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
             <div class="project-pips">
@@ -1147,7 +1248,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
       <article class="project reveal">
         <header class="project-head">
-          <span class="project-num">P/03</span>
+          <span class="project-num">P/04</span>
           <div class="project-titleblock">
             <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
             <div class="project-pips">
@@ -1182,7 +1283,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
       <article class="project reveal">
         <header class="project-head">
-          <span class="project-num">P/04</span>
+          <span class="project-num">P/05</span>
           <div class="project-titleblock">
             <h3 class="project-title">Post-Production<br><em>— video editing.</em></h3>
             <div class="project-pips">
@@ -1261,7 +1362,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
       <article class="project reveal">
         <header class="project-head">
-          <span class="project-num">P/05</span>
+          <span class="project-num">P/06</span>
           <div class="project-titleblock">
             <h3 class="project-title">Fantasy scene<br><em>— photo composite.</em></h3>
             <div class="project-pips">
@@ -1293,10 +1394,10 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
         </div>
       </article>
 
-      <!-- =============== P/06 — ILLUSTRATOR MAGAZINE LAYOUT =============== -->
+      <!-- =============== P/07 — ILLUSTRATOR MAGAZINE LAYOUT =============== -->
       <article class="project reveal">
         <header class="project-head">
-          <span class="project-num">P/06</span>
+          <span class="project-num">P/07</span>
           <div class="project-titleblock">
             <h3 class="project-title">STRUCTURES<br><em>— editorial layout.</em></h3>
             <div class="project-pips">
