@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chathura Ishtaweera — Game Developer & Multimedia Artist</title>
-<meta name="description" content="Portfolio of Chathura Ishtaweera — game developer, level designer, and multimedia undergraduate based in Sri Lanka." />
+<title>Chathura Ishtaweera — Game Development, Video Editing & Social Media</title>
+<meta name="description" content="Chathura Ishtaweera: game development, video editing and social media. BSc (Hons) Multimedia graduate with Second Class Honours (Upper Division). Explore projects and download my CV." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -636,7 +636,7 @@ a { color: inherit; text-decoration: none; }
   .media-item { aspect-ratio: auto; height: 70vh; }
 }
 
-/* Lavender Marriage (P/07): two-up video row, 16:9 screenshot tiles, credits */
+/* Lavender Marriage (P/01): two-up video row, 16:9 screenshot tiles, credits */
 .video-gallery-grid.lm-two { grid-template-columns: repeat(2, 1fr); }
 .lm-shot img {
   position: absolute;
@@ -728,7 +728,7 @@ a { color: inherit; text-decoration: none; }
 }
 .toolkit-spacer {
   grid-column: 1;
-  grid-row: 1 / span 2; /* Forces spacer to take up full left column */
+  grid-row: 1 / span 3; /* Forces spacer to take up full left column */
 }
 @media (max-width: 900px) {
   .toolkit { grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 24px; }
@@ -955,6 +955,18 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
   }
   body.js .reveal { opacity: 1; transform: none; }
 }
+
+/* CV and professional experience */
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 48px; }
+.hero-actions .hero-scroll { margin-top: 0; }
+.cv-download { display: inline-flex; align-items: center; gap: 18px; padding: 13px 20px; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.cv-download:hover { background: var(--accent); color: var(--bg); }
+.experience-card { padding: clamp(24px, 4vw, 48px); border: 1px solid var(--line); border-radius: 20px; background: var(--bg-2); }
+.experience-meta { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 14px; }
+.experience-card h3 { font-family: var(--display); font-size: clamp(23px, 3vw, 32px); margin-bottom: 20px; }
+.experience-card ul { padding-left: 20px; max-width: 900px; color: var(--ink-mute); line-height: 1.8; }
+.experience-card li + li { margin-top: 10px; }
+
 </style>
 </head>
 <body>
@@ -963,12 +975,13 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
   <div class="nav-inner">
     <a href="#top" class="brand">
       <span class="brand-dot"></span>
-      Chathura Ishtaweera <span style="color: var(--ink-low);">— Game Dev</span>
+      Chathura Ishtaweera <span style="color: var(--ink-low);">— Multimedia</span>
     </a>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#toolkit">Toolkit</a>
+      <a href="Chathura_Ishtaweera_CV.pdf" download>CV ↓</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -976,8 +989,8 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 
 <section class="hero container" id="top">
   <div class="hero-meta">
-    <span><span class="live"></span>Currently building games · Sri Lanka</span>
-    <span>Portfolio · 2026 · v1.2</span>
+    <span><span class="live"></span>Games · Video · Digital content · Sri Lanka</span>
+    <span>Portfolio · 2026 · v1.3</span>
   </div>
 
   <div class="hero-body">
@@ -990,17 +1003,17 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
       <div class="hero-tagline reveal" style="transition-delay: .15s;">
         <div class="role">
           <span class="bar"></span>
-          Game developer & Level designer · Multimedia, NSBM
+          Game development · Video editing · Social media
         </div>
         <p class="pitch">
-          Building playable worlds, one level at a time. Seamlessly bridging technical execution and visual storytelling across the full digital production pipeline.
+          I build playable worlds, edit stories for the screen, and create content for digital audiences. BSc (Hons) Multimedia, NSBM — Second Class Honours (Upper Division).
         </p>
       </div>
 
-      <a href="#work" class="hero-scroll reveal" style="transition-delay: .3s;">
-        <span class="hero-scroll-line"></span>
-        See the work
-      </a>
+      <div class="hero-actions reveal" style="transition-delay: .3s;">
+        <a href="#work" class="hero-scroll"><span class="hero-scroll-line"></span>See the work</a>
+        <a class="cv-download" href="Chathura_Ishtaweera_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+      </div>
     </div>
 
     <div class="hero-stack reveal" style="transition-delay: .3s;" aria-hidden="true">
@@ -1047,10 +1060,10 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
       <div></div>
       <div class="about-prose">
         <p>
-          Final-year Multimedia undergraduate at <span class="key">NSBM</span> with a strong focus on game development and digital production. Brings hands-on experience as a Level Designer in Unreal Engine 5, coupled with robust video editing capabilities in Premiere Pro for crafting high-quality trailers, cutscenes, and audio-visual presentations.
+          I completed my BSc (Hons) in Multimedia at <span class="key">NSBM Green University</span> with <span class="key">Second Class Honours (Upper Division)</span>. My work spans game development in Unreal Engine 5, level design, video editing in Premiere Pro, and visual content for digital audiences.
         </p>
         <p>
-          Supported by programming foundations spanning C++, Java, and JavaScript. Comfortable navigating the full creative pipeline—from gameplay design and 3D character modeling to UI development—with a lifelong instinct for what makes a digital experience engaging.
+          I bring programming foundations in C++, Java and JavaScript together with 3D character creation, web design and post-production. My experience at Enya Language Center adds a practical understanding of social-media administration, customer communication and content planning.
         </p>
       </div>
 
@@ -1068,8 +1081,8 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
           <span class="stat-value">Level <em>design</em></span>
         </div>
         <div class="stat">
-          <span class="stat-label">Currently</span>
-          <span class="stat-value">Final <em>Year</em></span>
+          <span class="stat-label">Degree result</span>
+          <span class="stat-value">Second <em>Upper</em></span>
         </div>
       </div>
     </div>
@@ -1087,7 +1100,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
     <div class="work-list">
 
       <!-- =============== P/01 — LAVENDER MARRIAGE (FINAL-YEAR PROJECT) =============== -->
-      <article class="project reveal">
+      <article class="project reveal" id="lavender-marriage">
         <header class="project-head">
           <span class="project-num">P/01</span>
           <div class="project-titleblock">
@@ -1166,124 +1179,9 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
         </div>
       </article>
 
-      <article class="project reveal">
+      <article class="project reveal" id="post-production">
         <header class="project-head">
           <span class="project-num">P/02</span>
-          <div class="project-titleblock">
-            <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
-            <div class="project-pips">
-              <span class="pip role">Level Designer</span>
-              <span class="pip">University coursework</span>
-              <span class="pip">NSBM</span>
-              <span class="pip">2025</span>
-            </div>
-          </div>
-        </header>
-
-        <div class="project-media">
-          <iframe
-            src="https://drive.google.com/file/d/100dp9fPpFp_fgxR-mt1Wp5YAoGEsziIE/preview"
-            allow="autoplay; fullscreen"
-            allowfullscreen
-            loading="lazy"
-            title="Level design gameplay"></iframe>
-        </div>
-
-        <div class="project-foot">
-          <div></div>
-          <p class="project-blurb">
-            Designed and built playable levels for a team-developed game produced as
-            a university group project. Owned the level layout, mission flow,
-            encounter pacing, and environmental composition — collaborating with
-            programmers and artists to translate paper design into a working
-            in-engine build.
-          </p>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <header class="project-head">
-          <span class="project-num">P/03</span>
-          <div class="project-titleblock">
-            <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
-            <div class="project-pips">
-              <span class="pip role">Solo · Designer + Dev</span>
-              <span class="pip">HTML5 / CSS3 / JS</span>
-              <span class="pip">Live</span>
-              <span class="pip">2025</span>
-            </div>
-          </div>
-        </header>
-
-        <div class="project-media">
-          <div class="gpm-embed" id="gpmEmbed">
-            <iframe
-              src="https://zerosnake00.github.io/GameplayMate/"
-              loading="lazy"
-              title="GamePlayMate live site"></iframe>
-          </div>
-          <a class="visit-overlay"
-             href="https://zerosnake00.github.io/GameplayMate/"
-             target="_blank" rel="noopener">
-            Visit live <span style="font-family: var(--display);">↗</span>
-          </a>
-        </div>
-
-        <div class="project-foot">
-          <div></div>
-          <p class="project-blurb">
-            End-to-end web platform offering specialised services for gacha-game
-            players (Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless
-            Zone Zero). Born out of frustration with arbitrary platform restrictions
-            on Fiverr — built from the ground up: visual system, hero composition,
-            responsive card grid, custom video players, expandable lists.
-          </p>
-          <a class="project-link"
-             href="https://github.com/ZeroSnake00/GameplayMate"
-             target="_blank" rel="noopener">
-            View source <span>↗</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <header class="project-head">
-          <span class="project-num">P/04</span>
-          <div class="project-titleblock">
-            <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
-            <div class="project-pips">
-              <span class="pip role">3D Artist</span>
-              <span class="pip">VRoid Studio</span>
-              <span class="pip">Multimedia coursework</span>
-              <span class="pip">2024</span>
-            </div>
-          </div>
-        </header>
-
-        <div class="project-media">
-          <iframe
-            src="https://drive.google.com/file/d/1vS93WC3knlrKnG1-b-5gkbKR3NB7xSWI/preview"
-            allow="autoplay; fullscreen"
-            allowfullscreen
-            loading="lazy"
-            title="3D character creation in VRoid Studio"></iframe>
-        </div>
-
-        <div class="project-foot">
-          <div></div>
-          <p class="project-blurb">
-            Designed and modelled an original 3D character in VRoid Studio —
-            silhouette, proportions, facial parameters, outfit composition, and
-            texturing. End-to-end character pipeline thinking, built with the
-            long-term ambition of slotting models like this straight into a game
-            engine.
-          </p>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <header class="project-head">
-          <span class="project-num">P/05</span>
           <div class="project-titleblock">
             <h3 class="project-title">Post-Production<br><em>— video editing.</em></h3>
             <div class="project-pips">
@@ -1359,6 +1257,123 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
           </p>
         </div>
       </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/03</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Team game project<br><em>— level design.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Level Designer</span>
+              <span class="pip">University coursework</span>
+              <span class="pip">NSBM</span>
+              <span class="pip">2025</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <iframe
+            src="https://drive.google.com/file/d/100dp9fPpFp_fgxR-mt1Wp5YAoGEsziIE/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            title="Level design gameplay"></iframe>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            Designed and built playable levels for a team-developed game produced as
+            a university group project. Owned the level layout, mission flow,
+            encounter pacing, and environmental composition — collaborating with
+            programmers and artists to translate paper design into a working
+            in-engine build.
+          </p>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/04</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">GamePlayMate<br><em>— web platform.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">Solo · Designer + Dev</span>
+              <span class="pip">HTML5 / CSS3 / JS</span>
+              <span class="pip">Live</span>
+              <span class="pip">2025</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <div class="gpm-embed" id="gpmEmbed">
+            <iframe
+              src="https://zerosnake00.github.io/GameplayMate/"
+              loading="lazy"
+              title="GamePlayMate live site"></iframe>
+          </div>
+          <a class="visit-overlay"
+             href="https://zerosnake00.github.io/GameplayMate/"
+             target="_blank" rel="noopener">
+            Visit live <span style="font-family: var(--display);">↗</span>
+          </a>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            End-to-end web platform offering specialised services for gacha-game
+            players (Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless
+            Zone Zero). Born out of frustration with arbitrary platform restrictions
+            on Fiverr — built from the ground up: visual system, hero composition,
+            responsive card grid, custom video players, expandable lists.
+          </p>
+          <a class="project-link"
+             href="https://github.com/ZeroSnake00/GameplayMate"
+             target="_blank" rel="noopener">
+            View source <span>↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <header class="project-head">
+          <span class="project-num">P/05</span>
+          <div class="project-titleblock">
+            <h3 class="project-title">Original character<br><em>— 3D model.</em></h3>
+            <div class="project-pips">
+              <span class="pip role">3D Artist</span>
+              <span class="pip">VRoid Studio</span>
+              <span class="pip">Multimedia coursework</span>
+              <span class="pip">2024</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="project-media">
+          <iframe
+            src="https://drive.google.com/file/d/1vS93WC3knlrKnG1-b-5gkbKR3NB7xSWI/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            title="3D character creation in VRoid Studio"></iframe>
+        </div>
+
+        <div class="project-foot">
+          <div></div>
+          <p class="project-blurb">
+            Designed and modelled an original 3D character in VRoid Studio —
+            silhouette, proportions, facial parameters, outfit composition, and
+            texturing. End-to-end character pipeline thinking, built with the
+            long-term ambition of slotting models like this straight into a game
+            engine.
+          </p>
+        </div>
+      </article>
+
+
 
       <article class="project reveal">
         <header class="project-head">
@@ -1450,10 +1465,29 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
   </div>
 </section>
 
-<section class="section" id="toolkit">
+<section class="section" id="experience">
   <div class="container">
     <header class="section-head reveal">
       <div class="section-num">03</div>
+      <div class="section-label">Professional Experience</div>
+      <h2 class="section-title">Social media<br>&amp; <em>content.</em></h2>
+    </header>
+    <div class="experience-card reveal">
+      <div class="experience-meta">Jul – Oct 2026 · Enya Language Center</div>
+      <h3>Assistant Social Media Manager</h3>
+      <ul>
+        <li>Administered the institute's Facebook and Instagram pages and responded to customer messages and course enquiries.</li>
+        <li>Reviewed low engagement and proposed a monthly content plan featuring educational posts and short Reels.</li>
+        <li>Supported Moodle LMS administration and marked online examinations.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="toolkit">
+  <div class="container">
+    <header class="section-head reveal">
+      <div class="section-num">04</div>
       <div class="section-label">Toolkit / Stack</div>
       <h2 class="section-title">What I <em>use.</em></h2>
     </header>
@@ -1464,6 +1498,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
       <div class="tool-group">
         <h3><span class="num">01</span>Game &amp; Design</h3>
         <ul>
+          <li>Unreal Engine 5</li>
           <li>Level Design</li>
           <li>Game Systems</li>
           <li>VRoid Studio</li>
@@ -1501,6 +1536,14 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
           <li>Shader basics</li>
         </ul>
       </div>
+      <div class="tool-group">
+        <h3><span class="num">05</span>Social &amp; Content</h3>
+        <ul><li>Facebook / Instagram administration</li><li>Customer enquiries</li><li>Content planning</li><li>Engagement review</li></ul>
+      </div>
+      <div class="tool-group">
+        <h3><span class="num">06</span>Research &amp; Support</h3>
+        <ul><li>Audience research / SPSS</li><li>Moodle LMS</li><li>Google Workspace / MS Office</li><li>AI-assisted multimedia workflows</li></ul>
+      </div>
     </div>
   </div>
 </section>
@@ -1508,7 +1551,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 <section class="section" id="timeline">
   <div class="container">
     <header class="section-head reveal">
-      <div class="section-num">04</div>
+      <div class="section-num">05</div>
       <div class="section-label">Education / Path</div>
       <h2 class="section-title">The <em>route</em> here.</h2>
     </header>
@@ -1517,9 +1560,9 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
       <div></div>
       <ol class="timeline-list">
         <li>
-          <span class="tl-year">2023 → Now</span>
+          <span class="tl-year">2023 → 2026</span>
           <span class="tl-title">BSc <em>(Hons)</em> in Multimedia</span>
-          <span class="tl-place">National School of Business Management</span>
+          <span class="tl-place">National School of Business Management · Second Class Honours (Upper Division)</span>
         </li>
         <li>
           <span class="tl-year">2018</span>
@@ -1550,13 +1593,14 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
   <div class="container">
     <div class="contact-block reveal">
       <div class="contact-eyebrow">Get in touch</div>
-      <h2 class="contact-headline">Let's build<br>something <em>worth</em><br>playing.</h2>
+      <h2 class="contact-headline">Let's make<br>something <em>worth</em><br>experiencing.</h2>
 
       <a class="contact-email" href="mailto:chathuraishtaweera@gmail.com">
         chathuraishtaweera@gmail.com
       </a>
 
       <div class="contact-row">
+        <a href="Chathura_Ishtaweera_CV.pdf" download>Download CV /↓</a>
         <a href="https://github.com/ZeroSnake00" target="_blank" rel="noopener">GitHub / ZeroSnake00</a>
         <a href="tel:+94778878936">+94 77 887 8936</a>
         <a href="https://zerosnake00.github.io/GameplayMate/" target="_blank" rel="noopener">GamePlayMate /↗</a>
@@ -1568,7 +1612,7 @@ body.js .reveal.in { opacity: 1; transform: translateY(0); }
 <footer class="container">
   <span>© 2026 Chathura Ishtaweera</span>
   <span class="signoff">Designed &amp; built by <em>me,</em> from Delgoda.</span>
-  <span>Open to game-dev opportunities</span>
+  <span>Open to game, video &amp; social-media roles</span>
 </footer>
 
 <script>
